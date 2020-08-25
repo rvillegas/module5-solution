@@ -1,0 +1,77 @@
+<div class="container" ng-controller="SignUpController as SignUpCtrl">
+    <div class="row justify-content-center">
+
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+
+            <form name="formsignup" novalidate>
+
+                <input class="form-control" type="text" name="firstname" ng-model="SignUpCtrl.user.firstname"
+                    placeholder="First name (required)" required style="background-color: black; color: white;">
+
+                <input class="form-control" type="text" name="lastname" ng-model="SignUpCtrl.user.lastname"
+                    placeholder="Last name (required)" required style="background-color: black; color: white;">
+
+                <span ng-if="(formsignup.firstname.$error.required || formsignup.lastname.$error.required) &&
+                    (formsignup.firstname.$touched || formsignup.lastname.$touched)" style="color: yellow;">
+                    First name and lastname are requeired</span>
+
+
+                <input class="form-control" type="email" name="email" ng-model="SignUpCtrl.user.email"
+                    placeholder="email" style="background-color: black; color: white;">
+
+                <span ng-if="formsignup.email.$invalid && formsignup.email.$touched" style="color: yellow;">
+                    Must be a valid email address: handle@domain format
+                </span>
+
+                <input class="form-control" type="text" name="phone" ng-model="SignUpCtrl.user.phone"
+                    placeholder="###-###-####" pattern="\d{3}-\d{3}-\d{4}"
+                    style="background-color: black; color: white;">
+
+                <span ng-if="formsignup.phone.$invalid && formsignup.phone.$touched" style="color: yellow;">
+                    Phone must be in the format ###-###-####.
+                </span>
+
+
+                <input class="form-control" type="text" name="favorite_dish" ng-model="SignUpCtrl.user.favorite_dish"
+                    placeholder="Favorite dish short name (required)" pattern="^[A-Z]{1,2}\d{1,2}$"
+                    style="background-color: black; color: white;" required>
+<!-- 
+                <span ng-if="formsignup.favorite_dish.$invalid && formsignup.favorite_dish.$touched"
+                    style="color: yellow;">
+                    Favorite dish short name is not valid and are requiered<br>
+                </span> -->
+
+                <span ng-show="!SignUpCtrl.dishIsValid(SignUpCtrl.user.favorite_dish) && formsignup.favorite_dish.$invalid &&  formsignup.favorite_dish.$touched" 
+                       style="color: yellow;">
+                    No such menu number exists
+                </span>
+
+                <!-- <span ng-show="SignUpCtrl.dishIsValid(SignUpCtrl.user.favorite_dish)" style="color: white;">
+                    {{SignUpCtrl.getDishName(SignUpCtrl.user.favorite_dish)}}<br>
+                </span> -->
+
+                <button class="btn" ng-if="formsignup.$valid && SignUpCtrl.dishIsValid(SignUpCtrl.user.favorite_dish)" 
+                    ng-click="SignUpCtrl.save(SignUpCtrl.user);"
+                    style="background-color: black; color: white;">submit</button>
+                <br>
+                <div  style="color: yellow; font-size: 150%; font-weight: bold;">{{SignUpCtrl.savedText}}</div>
+                <!-- user:{{SignUpCtrl.user}} <br>
+                dish: {{SignUpCtrl.user.favorite_dish}} <br>
+                dishIsvalid:{{SignUpCtrl.dishIsValid(SignUpCtrl.user.favorite_dish)}} <br>
+                Nombre:{{SignUpCtrl.getDishName(SignUpCtrl.user.favorite_dish)}} -->
+
+            </form>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">    </div>       
+            <div class="col-md-12">
+                <menu-item ng-show="SignUpCtrl.dishIsValid(SignUpCtrl.user.favorite_dish)"
+                    menu-item="SignUpCtrl.getFavoriteDish(SignUpCtrl.user.favorite_dish)">
+                </menu-item>
+            </div>
+        </div>
+    </div>
+</div>

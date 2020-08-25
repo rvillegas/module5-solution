@@ -1,0 +1,21 @@
+<div class="container" ng-controller="MyInfoController as MyInfoCtrl">
+
+    <div ng-hide="MyInfoCtrl.validUser()">
+        Not Signed Up Yet.<a ui-sref="public.signup"> Sign up Now!</a>
+    </div>
+    <div ng-show="MyInfoCtrl.validUser()">
+        Name: {{MyInfoCtrl.user.firstname}} {{MyInfoCtrl.user.lastname}}
+        <div ng-show="{{MyInfoCtrl.user.email}}">
+            Email: {{MyInfoCtrl.user.email}}
+        </div>
+        <div ng-show="{{MyInfoCtrl.user.phone}}">
+            Phone: {{MyInfoCtrl.user.phone}}
+        </div>
+        <hr>
+        <menu-item 
+            menu-item="MyInfoCtrl.getFavoriteDish(MyInfoCtrl.user.favorite_dish)">
+        </menu-item>
+
+    </div>
+
+</div>
