@@ -1,7 +1,7 @@
 <div class="container" ng-controller="SignUpController as SignUpCtrl">
-    <div class="row justify-content-center">
+    <div class="row">
 
-        <div class="col-md-3"></div>
+        <!-- <div class="col-md-3"></div> -->
         <div class="col-md-6">
 
             <form name="formsignup" novalidate>
@@ -34,15 +34,20 @@
 
 
                 <input class="form-control" type="text" name="favorite_dish" ng-model="SignUpCtrl.user.favorite_dish"
-                    placeholder="Favorite dish short name (required)" pattern="^[A-Z]{1,2}\d{1,2}$"
-                    style="background-color: black; color: white;" required>
-<!-- 
-                <span ng-if="formsignup.favorite_dish.$invalid && formsignup.favorite_dish.$touched"
+                    placeholder="Favorite dish short name (required)" 
+                    style="background-color: black; color: white;" 
+                    required>
+
+                    <!--pattern="^[A-Z]{1,2}\d{1,2}$" --> 
+
+                <!-- <span ng-if="formsignup.favorite_dish.$invalid && formsignup.favorite_dish.$touched"
                     style="color: yellow;">
                     Favorite dish short name is not valid and are requiered<br>
                 </span> -->
 
-                <span ng-show="!SignUpCtrl.dishIsValid(SignUpCtrl.user.favorite_dish) && formsignup.favorite_dish.$invalid &&  formsignup.favorite_dish.$touched" 
+                <!-- && formsignup.favorite_dish.$touched -->
+                
+                <span ng-show="!SignUpCtrl.dishIsValid(SignUpCtrl.user.favorite_dish) && SignUpCtrl.user.favorite_dish.length>0" 
                        style="color: yellow;">
                     No such menu number exists
                 </span>
@@ -50,12 +55,13 @@
                 <!-- <span ng-show="SignUpCtrl.dishIsValid(SignUpCtrl.user.favorite_dish)" style="color: white;">
                     {{SignUpCtrl.getDishName(SignUpCtrl.user.favorite_dish)}}<br>
                 </span> -->
-
-                <button class="btn" ng-if="formsignup.$valid && SignUpCtrl.dishIsValid(SignUpCtrl.user.favorite_dish)" 
-                    ng-click="SignUpCtrl.save(SignUpCtrl.user);"
-                    style="background-color: black; color: white;">submit</button>
                 <br>
+                <button class="btn" ng-if="formsignup.$valid && SignUpCtrl.dishIsValid(SignUpCtrl.user.favorite_dish)" 
+                        ng-click="SignUpCtrl.save(SignUpCtrl.user);"
+                        style="background-color: black; color: white;">submit</button>
+                        
                 <div  style="color: yellow; font-size: 150%; font-weight: bold;">{{SignUpCtrl.savedText}}</div>
+
                 <!-- user:{{SignUpCtrl.user}} <br>
                 dish: {{SignUpCtrl.user.favorite_dish}} <br>
                 dishIsvalid:{{SignUpCtrl.dishIsValid(SignUpCtrl.user.favorite_dish)}} <br>
@@ -64,8 +70,9 @@
             </form>
         </div>
     </div>
+    <br>
     <div class="container">
-        <div class="row">
+        <div class="row justify-content-sm-center">
             <div class="col-md-3">    </div>       
             <div class="col-md-12">
                 <menu-item ng-show="SignUpCtrl.dishIsValid(SignUpCtrl.user.favorite_dish)"

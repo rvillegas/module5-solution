@@ -38,7 +38,7 @@ function MenuService($http, ApiPath) {
       db.forEach(val=> sn[val.short_name]=val);
     });
 
-    return sn
+    return sn;
  };
 
   service.dishes=service.getDishes();

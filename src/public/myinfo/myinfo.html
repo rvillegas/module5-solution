@@ -5,9 +5,9 @@
     </div>
     <div ng-show="MyInfoCtrl.validUser()">
         Name: {{MyInfoCtrl.user.firstname}} {{MyInfoCtrl.user.lastname}}
-        <div ng-show="{{MyInfoCtrl.user.email}}">
+        <p ng-show="{{MyInfoCtrl.user.email}}">
             Email: {{MyInfoCtrl.user.email}}
-        </div>
+        </p>
         <div ng-show="{{MyInfoCtrl.user.phone}}">
             Phone: {{MyInfoCtrl.user.phone}}
         </div>

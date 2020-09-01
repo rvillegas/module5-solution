@@ -18,7 +18,7 @@
             $timeout(function () {
                 SignUpCtrl.savedText='';
                 $state.go('public.home');
-            },2000);
+            },1500);
             
         }
 
